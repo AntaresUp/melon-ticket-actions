@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Check Tickets
-        uses: AntaresUp/melon-ticket-actions@v1.1.0
+        uses: mooyoul/melon-ticket-actions@v1.1.5
         with:
           product-id: 210230
           schedule-id: 100001
