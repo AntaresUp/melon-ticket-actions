@@ -23,21 +23,23 @@ const qs = require("querystring");
     const webhook = new webhook_1.IncomingWebhook(webhookUrl);
     const res = await axios_1.default({
         method: "POST",
-        url: "https://ticket.melon.com/tktapi/product/seatStateInfo.json",
+        url: "https://tkglobal.melon.com/tktapi/glb/product/summary.json",
         params: {
             v: "1",
+            callback: "getBlockGradeSeatCountCallBack",
         },
         data: qs.stringify({
             prodId: productId,
             scheduleNo: scheduleId,
-            seatId,
-            volume: 1,
+            pocCode: "SC0002",
+            perfDate: 20240921,
             selectedGradeVolume: 1,
+            langCd: "CN",
         }),
     });
     // tslint:disable-next-line
     console.log("Got response: ", res.data);
-    if (res.data.chkResult) {
+    if (res.data.summary.some(item => item.realSeatCntlk !== 0)) {
         const link = `http://ticket.melon.com/performance/index.htm?${qs.stringify({
             prodId: productId,
         })}`;
