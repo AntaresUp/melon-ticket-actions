@@ -1,7 +1,8 @@
 name: example
 on:
-  schedule:
-    - cron: '*/5 * * * *' # Every 5 minutes
+  # schedule:
+  push
+    # - cron: '*/5 * * * *' # Every 5 minutes
 jobs:
   job:
     runs-on: ubuntu-latest
